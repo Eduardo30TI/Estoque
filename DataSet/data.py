@@ -3,7 +3,7 @@ from decouple import config
 import streamlit as st
 import pandas as pd
 
-CODE=config('CODE')
+CODE='1iToXLcP1P_alrTvhuQTHIwWPSRbp4BV4xhParNlTbYE'
 worksheet=gc.service_account(filename='cred.json')
 sheet=worksheet.open_by_key(CODE)
 
