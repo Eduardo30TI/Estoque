@@ -50,6 +50,7 @@ class Controle:
 
             codigos=df[tabela]['SKU'].unique().tolist()
 
+            #contagem
             with tab1.container():
 
                 var_dict['produto']=len(df['Produto'].loc[df['Produto']['Status']=='ATIVO'])
@@ -110,7 +111,8 @@ class Controle:
                 st.dataframe(df['contagem'],use_container_width=True,hide_index=True)
 
                 pass
-
+            
+            #divergência
             with tab2.container():
 
                 df['divergencia']=df[tabela].loc[df[tabela]['SKU'].isin(codigos)]
@@ -144,6 +146,13 @@ class Controle:
                     pass
 
                 with st.container():
+
+                    colunas=['SKU','Produto','Contagem']
+                    col_leach='Qtde'
+                    temp_df=df['divergencia'].groupby(colunas,as_index=False).agg({col_leach:'sum'})
+                    col=colunas[-1]
+                    del colunas[-1]
+                    temp_df=temp_df.pivot(index=colunas,columns=col,values=col_leach).reset_index()                    
 
                     radio_selected=st.radio(label='Agrupamento',options=['Normal','Conferente','Contagem'])
 
@@ -233,7 +242,8 @@ class Controle:
                     pass
                 
                 pass
-
+            
+            #ok
             with tab3.container():
 
                 card1,card2,card3,=st.columns(3)
