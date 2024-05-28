@@ -218,7 +218,7 @@ class Controle:
                                 continue
 
 
-                            status='VERIFICAR' if var_max!=var_min else 'OK'
+                            status='VERIFICAR' if var_max!=var_min and len(col)<=1 else 'OK'
                             
                             temp_df.loc[i,'Status']=status
                             temp_df.loc[i,'Estoque Físico']=var_min
