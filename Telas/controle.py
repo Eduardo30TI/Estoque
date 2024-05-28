@@ -263,11 +263,12 @@ class Controle:
                     st.metric(label='Qtde à Verificar',value=Moeda.Numero(var_dict['dif']))
 
                     pass                
-
+                
+                div1,div2,div3=st.columns(3)
 
                 with st.container():
 
-                    var_dict['perc']=round(var_dict['ok']/var_dict['produto'],4)*100
+                    var_dict['perc']=round(var_dict['ok']/var_dict['produto'],4)*100 if var_dict['ok']>0 else 0
 
                     bar=go.Figure(go.Indicator(
 
