@@ -19,6 +19,9 @@ class Menu:
         self.path_base=os.path.join(os.getcwd(),'PC',self.IP)
         os.makedirs(self.path_base,exist_ok=True)
 
+        self.img_path=os.path.join(os.getcwd(),'Imagens','*.*')
+        self.img=glob(self.img_path)        
+
         pass
 
 
@@ -29,6 +32,20 @@ class Menu:
         with placeholder.container():
 
             with st.sidebar:
+
+                with st.container():
+
+                    if len(self.img)>0:
+
+                        with open(self.img[-1],'rb') as file:
+                            
+                            st.image(file.read(),use_column_width=True)
+
+                            pass
+
+                        pass
+
+                    pass               
 
                 selected=option_menu(menu_title='Menu',options=['Inventário','Sair'],menu_icon='list',icons=['box-seam-fill','box-arrow-right'])
 

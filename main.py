@@ -8,7 +8,24 @@ import DataSet.data
 import Telas as gui
 import DataSet.data as dt
 
-st.set_page_config(page_title='Controle STK',layout='wide')
+icon_path=os.path.join(os.getcwd(),'Icones','*.*')
+icon=glob(icon_path)
+
+if len(icon)>0:
+
+    with open(icon[-1],'rb') as file:
+
+        st.set_page_config(page_title='Controle STK',layout='wide',page_icon=file.read())
+
+        pass
+
+    pass
+
+else:
+
+    st.set_page_config(page_title='Controle STK',layout='wide')
+
+    pass
 
 class Login:
 
@@ -17,6 +34,9 @@ class Login:
         self.IP=s.gethostbyname(s.gethostname())
         self.path_base=os.path.join(os.getcwd(),'PC',self.IP)
         os.makedirs(self.path_base,exist_ok=True)
+
+        self.img_path=os.path.join(os.getcwd(),'Imagens','*.*')
+        self.img=glob(self.img_path)
 
         pass
 
@@ -53,6 +73,22 @@ class Login:
             div1,div2,div3=st.columns([1,2,1])
 
             with div2.container():
+
+                img1,img2,img3=st.columns(3)
+
+                with img2.container():
+
+                    if len(self.img)>0:
+
+                        with open(self.img[-1],'rb') as file:
+                            
+                            st.image(file.read(),width=250)
+
+                            pass
+
+                        pass
+
+                    pass
 
                 st.title('Login')
                 st.markdown('----')
