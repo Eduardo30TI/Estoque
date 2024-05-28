@@ -286,17 +286,21 @@ class Controle:
 
                 with st.expander('Consolidado'):
 
-                    colunas=['SKU','Produto']
-                    col_leach='Estoque Físico'
-                    temp_df=df['ok'].groupby(colunas,as_index=False).agg({col_leach:'sum'})
-                    temp_df=temp_df.merge(df['Estoque'][['SKU','Qtde CMP']],on='SKU',how='inner')
-                    temp_df['Ajustar']=temp_df.apply(lambda info: float(info[col_leach])-float(info['Qtde CMP']),axis=1)
-                    temp_df=df['Produto'][['Fabricante','Linha','SKU']].merge(temp_df,on='SKU',how='inner')
+                    if len(df['ok'])>0:
 
-                    st.dataframe(temp_df,use_container_width=True,hide_index=True)
+                        colunas=['SKU','Produto']
+                        col_leach='Estoque Físico'
+                        temp_df=df['ok'].groupby(colunas,as_index=False).agg({col_leach:'sum'})
+                        temp_df=temp_df.merge(df['Estoque'][['SKU','Qtde CMP']],on='SKU',how='inner')
+                        temp_df['Ajustar']=temp_df.apply(lambda info: float(info[col_leach])-float(info['Qtde CMP']),axis=1)
+                        temp_df=df['Produto'][['Fabricante','Linha','SKU']].merge(temp_df,on='SKU',how='inner')
 
-                    data=ExcelDW.DownloadXLSX(temp_df)
-                    st.download_button(label='Download',data=data,file_name=f'Acuracidade.xlsx',key='dw4',type='primary')                   
+                        st.dataframe(temp_df,use_container_width=True,hide_index=True)
+
+                        data=ExcelDW.DownloadXLSX(temp_df)
+                        st.download_button(label='Download',data=data,file_name=f'Acuracidade.xlsx',key='dw4',type='primary')
+
+                        pass                  
 
                     pass
 
