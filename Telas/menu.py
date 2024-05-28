@@ -13,10 +13,6 @@ class Menu:
 
     def __init__(self) -> None:
 
-        self.CODE=config('CODE')
-        self.worksheet=gc.service_account(filename='cred.json')
-        self.sheet=self.worksheet.open_by_key(self.CODE)
-
         self.IP=s.gethostbyname(s.gethostname())
         self.path_base=os.path.join(os.getcwd(),'PC',self.IP)
         os.makedirs(self.path_base,exist_ok=True)
