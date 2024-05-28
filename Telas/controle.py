@@ -147,13 +147,6 @@ class Controle:
 
                 with st.container():
 
-                    colunas=['SKU','Produto','Contagem']
-                    col_leach='Qtde'
-                    temp_df=df['divergencia'].groupby(colunas,as_index=False).agg({col_leach:'sum'})
-                    col=colunas[-1]
-                    del colunas[-1]
-                    temp_df=temp_df.pivot(index=colunas,columns=col,values=col_leach).reset_index()                    
-
                     radio_selected=st.radio(label='Agrupamento',options=['Normal','Conferente','Contagem'])
 
                     if radio_selected=='Normal':
