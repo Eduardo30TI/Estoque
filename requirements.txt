@@ -1,4 +1,4 @@
-streamlit==1.33.0
+streamlit==1.35.0
 streamlit-aggrid==1.0.2
 streamlit-camera-input-live==0.2.0
 streamlit-card==1.0.0
