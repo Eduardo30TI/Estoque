@@ -268,7 +268,7 @@ class Controle:
 
                 with st.container():
 
-                    var_dict['perc']=round(var_dict['ok']/var_dict['produto'],4)*100 if var_dict['ok']>0 else 0
+                    var_dict['perc']=round(float(var_dict['ok'])/float(var_dict['produto']),4)*100 if var_dict['ok']>0 else 0
 
                     bar=go.Figure(go.Indicator(
 

@@ -47,7 +47,7 @@ class Menu:
 
                     pass               
 
-                selected=option_menu(menu_title='Menu',options=['Inventário','Sair'],menu_icon='list',icons=['box-seam-fill','box-arrow-right'])
+                selected=option_menu(menu_title='Menu',options=['Inventário','Expedição','Sair'],menu_icon='list',icons=['box-seam-fill','box2-fill','box-arrow-right'])
 
                 pass
 
@@ -64,6 +64,13 @@ class Menu:
 
             shutil.rmtree(self.path_base)
             streamlit_js_eval(js_expressions='parent.window.location.reload()')
+
+            pass
+
+        elif selected=='Expedição':
+
+            tela=gui.Expedicao()
+            tela.main()
 
             pass
 
